@@ -15,13 +15,14 @@ const NavBtn = (props) => (
 )
 
 const NavLink = (props) => (
-  <a className="text-white flex-auto flex items-center justify-center m-2" href="{{props.link}}">{ props.text }</a>
+  <a className="text-white flex-auto flex items-center justify-center m-2 lg:mx-4" href="{{props.link}}">{ props.text }</a>
 )
 
 class NavBar extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      expanded: false,
       expandClass: "bottom-100/100"
     }
 
@@ -29,15 +30,18 @@ class NavBar extends React.Component {
   }
 
   expand () {
-    if(this.state.expandClass === "bottom-100/100") {
-      this.setState({
-        expandClass: "bottom-0"
-      })
-    } else {
+    if (this.state.expanded) {
       this.setState({
         expandClass: "bottom-100/100"
       })
+    } else {
+      this.setState({
+        expandClass: "bottom-0"
+
+      })
     }
+
+    this.setState( (state) => ({ expanded: !state.expanded}) )
   }
 
   render () {
