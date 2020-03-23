@@ -4,3 +4,13 @@
 
 /* Montserrat bold semibold regular */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+.gradient {
+  position: relative;
+}
+
+.gradient::before {
+  content: "";
+  @apply inset-0 absolute;
+  background: linear-gradient(135deg, #1a202c, transparent);
+}

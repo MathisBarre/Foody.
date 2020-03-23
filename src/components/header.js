@@ -35,7 +35,6 @@ class NavBar extends React.Component {
     } else {
       this.setState({
         expandClass: "bottom-0"
-
       })
     }
 
@@ -48,8 +47,8 @@ class NavBar extends React.Component {
         <nav className={`fixed inset-x-0 top-0 bg-gray-900 flex flex-col justify-center text-center z-10  overflow-hidden duration-75 lg:static lg:flex-row ${this.state.expandClass}`}>
           <NavLink onClick={this.expand} text="Home" link="/#home"/>
           <NavLink onClick={this.expand} text="About" link="/#about"/>
-          <NavLink onClick={this.expand} text="Menu" link="/#service"/>
-          <NavLink onClick={this.expand} text="Services" link="/#menu"/>
+          <NavLink onClick={this.expand} text="Menu" link="/#menu"/>
+          <NavLink onClick={this.expand} text="Services" link="/#service"/>
           <NavLink onClick={this.expand} text="Contact" link="/#contact"/>
         </nav>
         <NavBtn onClick={this.expand}/>
@@ -60,7 +59,7 @@ class NavBar extends React.Component {
 
 /* header */
 const Header = ({ siteTitle }) => (
-  <header className="bg-gray-900 mb-6">
+  <header className="bg-gray-900 mb-6 fixed inset-x-0 top-0 z-50">
     <div className="mx-auto container py-4 flex items-center justify-between px-4">
       <h1>
         <Link to="/" className="text-white text-3xl font-semibold">
