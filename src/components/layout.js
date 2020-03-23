@@ -24,14 +24,14 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <div className="font-montserrat">
+    <div className="font-montserrat flex flex-col h-screen">
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div className="container mx-auto px-4" >      
+      <div className="container mx-auto px-4 flex-1" >      
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
       </div>
+      <footer className="container mx-auto my-6">
+          © {new Date().getFullYear()}, Built with <a href="https://www.gatsbyjs.org">Gatsby</a>
+      </footer>
     </div>
   )
 }
