@@ -22,8 +22,8 @@ const Layout = ({ children }) => {
       <div className="flex-1" >   
         <main>{children}</main>
       </div>
-      <footer className="container mx-auto my-6">
-          © {new Date().getFullYear()}, Built with <a href="https://www.gatsbyjs.org">Gatsby</a>
+      <footer className="container mx-auto my-6 px-4">
+          © {new Date().getFullYear()}, Foody All Right Reserved
       </footer>
     </div>
   )
