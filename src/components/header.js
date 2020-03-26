@@ -48,7 +48,7 @@ class NavBar extends React.Component {
           <NavLink onClick={this.expand} text="Home" link="/#home"/>
           <NavLink onClick={this.expand} text="About" link="/#about"/>
           <NavLink onClick={this.expand} text="Menu" link="/#menu"/>
-          <NavLink onClick={this.expand} text="Services" link="/#service"/>
+          <NavLink onClick={this.expand} text="Services" link="/#services"/>
           <NavLink onClick={this.expand} text="Contact" link="/#contact"/>
         </nav>
         <NavBtn onClick={this.expand}/>

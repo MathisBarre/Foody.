@@ -4,12 +4,13 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 import homebg from "../images/homebg.png"
-import aboutImg from "../images/about.png"
 import menuImg from "../images/menu.png"
 import menu1 from "../images/menu1.png"
 import menu2 from "../images/menu2.png"
 import menu3 from "../images/menu3.png"
 import menu4 from "../images/menu4.png"
+import contactImg from "../images/contact.png"
+import aboutImg from "../images/about.png"
 
 const Home = () => (
   <section className="h-32rem lg:h-screen mt-4-8rem lg:mt-0 bg-center bg-cover flex justify-center items-center gradient" style={{backgroundImage: `url(${homebg})`}} id="home">
@@ -21,7 +22,7 @@ const Home = () => (
   </section>
 )
 
-const About = () => (
+const About = ({ data }) => (
   <section className="container mx-auto px-4 py-6 md:py-12 lg:flex" id="about">
     <div className="inline-block lg:max-w-50%">
       <h2 className="text-2xl md:text-3xl lg:text-6xl xl:text-7xl text-green-600 font-bold">About us</h2>
@@ -33,7 +34,6 @@ Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nul
     <img src={aboutImg} className="hidden lg:block box-border ml-16 my-8 shadow-xl h-auto object-cover max-w-47%" alt=""></img>
   </section>
 )
-
 const MenuCard = (props) => (
   <div className="h-56 w-48 bg-gray-100 mb-4 md:m-4 flex flex-col justify-start items-center">
     <div className="h-40 w-40 bg-black mt-4 bg-center bg-cover" style={{backgroundImage: `url(${props.img})`}}></div>
@@ -72,7 +72,7 @@ const MealGroup = (props) => (
 )
 
 const Services = () => (
-  <section className="container mx-auto py-4 px-4">
+  <section className="container mx-auto py-4 px-4 pb-16 " id="services">
     <h2 className="text-2xl md:text-3xl lg:text-6xl xl:text-7xl text-center font-bold text-green-700 mt-4">Our menu</h2>
     <p className="text-center mb-8 lg:text-lg">Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.</p>
     <div className="xl:flex xl:flex-wrap justify-between">
@@ -180,14 +180,32 @@ const Services = () => (
   </section>
 )
 
+const FormItem = (props) => (
+  <div className="flex flex-col font-semibold mt-2">
+    <label className="text-green-700" for={props.name}>{props.label}</label>
+    <input className="block appearance-none w-full lg:w-64 bg-gray-200 border border-gray-200 text-gray-700 p-3 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id={props.name} name={props.name} type={props.type} />
+  </div>
+)
+
 const Contact = () => (
-  <section>
-    
+  <section id="contact" className="bg-center bg-cover" style={{backgroundImage: `url(${contactImg})`}}>
+    <div className="container mx-auto px-4 py-4">
+      <h2 className="text-2xl md:text-3xl lg:text-6xl xl:text-7xl text-center font-bold text-green-700 mt-4">Book a table</h2>
+      <p className="text-center mb-8 lg:text-lg text-white">Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.</p>
+      <form>
+        <div className="mb-4 lg:flex lg:justify-around">
+          <FormItem label="Choose a date" name="date" type="date"/>
+          <FormItem label="Choose a time" name="time" type="time"/>
+          <FormItem label="Number of persons" name="nbPersons" type="number"/>
+        </div>
+        <input className="btn text-white mx-auto block mt-8 mb-4" type="submit" value="Submit" />
+      </form>
+    </div>
   </section>
 )
 
 
-const IndexPage = () => (
+const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
     <Home />

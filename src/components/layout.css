@@ -16,5 +16,5 @@
 }
 
 .btn {
-  @apply p-3 bg-green-600 rounded inline-block;
+  @apply p-3 bg-green-600 rounded;
 }
