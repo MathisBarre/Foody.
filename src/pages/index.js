@@ -2,38 +2,43 @@ import React from "react"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Img from "gatsby-image"
+import BackgroundImage from "gatsby-background-image"
 
-import homebg from "../images/homebg.png"
 import menuImg from "../images/menu.png"
 import menu1 from "../images/menu1.png"
 import menu2 from "../images/menu2.png"
 import menu3 from "../images/menu3.png"
 import menu4 from "../images/menu4.png"
 import contactImg from "../images/contact.png"
-import aboutImg from "../images/about.png"
+import { graphql } from "gatsby"
 
-const Home = () => (
-  <section className="h-32rem lg:h-screen mt-4-8rem lg:mt-0 bg-center bg-cover flex justify-center items-center gradient" style={{backgroundImage: `url(${homebg})`}} id="home">
-    <div className="container mx-auto px-4 z-10 text-white">
-      <h2 className="text-2xl md:text-3xl lg:text-6xl xl:text-7xl font-bold mb-2">Making Food Taste Better.</h2>
-      <p className="font-serif mb-6 text-lg lg:max-w-50%">Verum ad istam omnem orationem brevis est defensio. Nam quoad aetas M. Caeli dare potuit isti suspicioni locum, fuit primum ipsius pudore, deinde etiam patris diligentia disciplinaque munita. Qui ut huic virilem togam deditšnihil dicam hoc loco de me; </p>
-      <a className="btn" href="#menu">More details</a>
-    </div>
-  </section>
-)
+const Home = (props) => {
+  return (
+    <BackgroundImage className="h-32rem lg:h-screen mt-4-8rem lg:mt-0 bg-center bg-cover flex justify-center items-center gradient" fluid={props.image.childImageSharp.fluid} id="home">
+      <div className="container mx-auto px-4 z-10 text-white">
+        <h2 className="text-2xl md:text-3xl lg:text-6xl xl:text-7xl font-bold mb-2">Making Food Taste Better.</h2>
+        <p className="font-serif mb-6 text-lg lg:max-w-50%">Verum ad istam omnem orationem brevis est defensio. Nam quoad aetas M. Caeli dare potuit isti suspicioni locum, fuit primum ipsius pudore, deinde etiam patris diligentia disciplinaque munita. Qui ut huic virilem togam deditšnihil dicam hoc loco de me; </p>
+        <a className="btn" href="#menu">More details</a>
+      </div>
+    </BackgroundImage>
+  )
+}
 
-const About = ({ data }) => (
+const About = (props) => (
   <section className="container mx-auto px-4 py-6 md:py-12 lg:flex" id="about">
     <div className="inline-block lg:max-w-50%">
       <h2 className="text-2xl md:text-3xl lg:text-6xl xl:text-7xl text-green-600 font-bold">About us</h2>
       <p className="xl:text-lg lg:max-w-75%">
-        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
-Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Cras ultricies ligula sed magna dictum porta.
+        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae. Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Pellentesque in ipsum id orci porta dapibus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Cras ultricies ligula sed magna dictum porta.
       </p>
     </div>
-    <img src={aboutImg} className="hidden lg:block box-border ml-16 my-8 shadow-xl h-auto object-cover max-w-47%" alt=""></img>
+    <div className="hidden lg:block box-border ml-16 my-8 shadow-xl h-auto object-cover max-w-47% w-1/2">
+      <Img fluid={props.image.childImageSharp.fluid} alt="" />
+    </div>
   </section>
 )
+
 const MenuCard = (props) => (
   <div className="h-56 w-48 bg-gray-100 mb-4 md:m-4 flex flex-col justify-start items-center">
     <div className="h-40 w-40 bg-black mt-4 bg-center bg-cover" style={{backgroundImage: `url(${props.img})`}}></div>
@@ -208,13 +213,31 @@ const Contact = () => (
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
-    <Home />
-    <About />
+    <Home  image={data.home} />
+    <About image={data.about} />
     <Menu />
     <Services />
     <Contact />
   </Layout>
 )
 
+export const query = graphql`
+  query {
+    home: file(relativePath: {eq: "homebg.png"}) {
+      childImageSharp {
+        fluid(quality: 90, maxWidth: 1920) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    about: file(relativePath: { eq: "about.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 500) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage
